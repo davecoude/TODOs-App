@@ -1,11 +1,13 @@
 import React from "react";
+import "./css/TodoItem.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 function TodoItem(props) {
     return(
-        <li>
-            <span>C</span>
+        <li className="TodoItem">
+            <i class="bi bi-check-lg"></i>
             {props.text}
-            <span>x</span>
+            <i class="bi bi-x-lg"></i>
         </li>
     );
 }

@@ -1,8 +1,9 @@
 import React from "react";
+import "./css/CreateTodoButton.css";
 
 function CreateTodoButton(props) {
     return(
-        <button>+</button>
+        <button className="TodoCreateButton">Añadir nota<i class="bi bi-plus-lg"></i></button>
     );
 }
 
