@@ -1,0 +1,28 @@
+.TodoItem {
+    height: 80px;
+    width: 100%;
+    margin-top: 16px;
+    border-radius: 4px;
+    font-size: 1.6rem;
+    color: white;
+    background-color: #0f172a;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.TodoItem-active {
+    text-decoration: line-through;
+}
+.TodoItem-check {
+    color: #22c55e;
+}
+.TodoItem-delete {
+    color: #ef4444;
+}
+
+.TodoItem i {
+    font-size: 1.6rem;
+}

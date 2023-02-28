@@ -1,0 +1,21 @@
+.TodoSearch-container {
+    width: 80%;
+    margin: 32px auto;
+}
+
+.TodoSearch-container input {
+    height: 100%;
+    width: 90%;
+    padding: 5px;
+    border-style: none;
+    border-radius: 0 4px 4px 0;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 500;
+    color: #94a3b8;
+}
+.TodoSearch-container i {
+    background-color: #0f172a;
+    padding: 7px;
+    border-radius: 4px 0 0 4px;
+}
+
