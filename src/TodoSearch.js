@@ -4,8 +4,11 @@ import "bootstrap-icons/font/bootstrap-icons.css"
 
 function TodoSearch() {
 
+    const [search, setSearch] = React.useState('');
+
     const searchValueChange = (event) => {
         console.log(event.target.value);
+        setSearch(event.target.value);
     }
 
     return(
@@ -15,7 +18,9 @@ function TodoSearch() {
                 className="TodoSearch"
                 placeholder="Buscar..."
                 onChange={searchValueChange}
+                value={search}
             ></input>
+            <p>Tú busqueda: {search}</p>
         </div>
     );
 }
