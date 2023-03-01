@@ -13,13 +13,13 @@
     align-items: center;
 }
 
-.TodoItem-active {
+.texto-marcado {
     text-decoration: line-through;
 }
 .TodoItem-check {
     color: #22c55e;
 }
-.TodoItem-delete {
+.bi-x-lg:hover {
     color: #ef4444;
 }
 

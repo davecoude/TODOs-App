@@ -27,6 +27,7 @@ function App(props) {
           <TodoItem
             key={todo.text}
             text={todo.text}
+            completed={todo.completed}
           />
 
         ))}
