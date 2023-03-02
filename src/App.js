@@ -37,6 +37,21 @@ function App(props) {
     todosSearch = todos;
   }
 
+  // marcar como completado o eliminar TODO
+  const completeTodo = (text) => {
+    const indexTodo = todos.findIndex( todo => todo.text === text);
+    const newTodos = [...todos];
+    newTodos[indexTodo].completed = true;
+    setTodos(newTodos);
+  }
+
+  const deleteTodo = (text) => {
+    const indexTodo = todos.findIndex( todo => todo.text === text);
+    const newTodos = [...todos];
+    newTodos.splice(indexTodo, 1);
+    setTodos(newTodos);
+  }
+
   // elementos JSX
   return (
     <React.Fragment>
@@ -57,6 +72,8 @@ function App(props) {
             key={todo.text}
             text={todo.text}
             completed={todo.completed}
+            onComplete={ () => completeTodo(todo.text)}
+            onDelete={ () => deleteTodo(todo.text)}
           />
 
         ))}
