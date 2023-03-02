@@ -21,6 +21,22 @@ function App(props) {
   const totalTodos = todos.length;
   const completedTodos = todos.filter( todo => todo.completed === true).length;
 
+  // filtrar todos por busqueda
+
+  let todosSearch = [];
+
+  if (search.length >= 0) {
+
+    todosSearch = todos.filter( todo => {
+      const todoText = todo.text.toLowerCase();
+      const searchText = search.toLowerCase();
+
+      return todoText.includes(searchText);
+    });
+  } else {
+    todosSearch = todos;
+  }
+
   // elementos JSX
   return (
     <React.Fragment>
@@ -35,7 +51,7 @@ function App(props) {
       />
 
       <TodoList>
-        {todos.map( todo => (
+        {todosSearch.map( todo => (
 
           <TodoItem
             key={todo.text}
