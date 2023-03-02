@@ -29,7 +29,7 @@ function App(props) {
 
     todosSearch = todos.filter( todo => {
       const todoText = todo.text.toLowerCase();
-      const searchText = search.toLowerCase();
+      const searchText = search.toLowerCase().trim();
 
       return todoText.includes(searchText);
     });
