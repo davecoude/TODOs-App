@@ -4,19 +4,11 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 
 function TodoItem(props) {
 
-    const onClick = () => {
-        alert('Aqui el check se marcaria verde✅');
-    }
-
-    const onDelete = () => {
-        alert('Se borro la nota✖️')
-    }
-
     return(
         <li className="TodoItem">
             <i
                 className={`bi bi-check-lg ${props.completed && 'TodoItem-check'}`}
-                onClick={onClick}
+                onClick={props.onComplete}
             >
             </i>
             <p className={`${props.completed && 'texto-marcado'}`}>
@@ -24,7 +16,7 @@ function TodoItem(props) {
             </p>
             <i
                 className='bi bi-x-lg'
-                onClick={onDelete}
+                onClick={props.onDelete}
             >
             </i>
         </li>
