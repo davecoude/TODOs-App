@@ -2,9 +2,7 @@ import React from "react";
 import "./css/TodoSearch.css";
 import "bootstrap-icons/font/bootstrap-icons.css"
 
-function TodoSearch() {
-
-    const [search, setSearch] = React.useState('');
+function TodoSearch({ search, setSearch }) {
 
     const searchValueChange = (event) => {
         console.log(event.target.value);
