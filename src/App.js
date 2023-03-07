@@ -12,23 +12,40 @@ import { CreateTodoButton } from "./CreateTodoButton.js";
 //   { text: 'intro curso reactJs', completed: false }
 // ]
 
-// componente
-function App(props) {
 
+// custom hook
+function useLocalStorage(itemName, initialValue) {
   // persistencia con LocalStorage
-  const localStorageTodos = localStorage.getItem("TODOS_V1");
-  let parsedTodos;
+  const localStorageItem = localStorage.getItem(itemName);
+  let parsedItem;
 
-  if (!localStorageTodos) {
-    localStorage.setItem("TODOS_V1", JSON.stringify([]));
-    parsedTodos = [];
+  if (!localStorageItem) {
+    localStorage.setItem(itemName, JSON.stringify(initialValue));
+    parsedItem = initialValue;
 
   } else {
-    parsedTodos = JSON.parse(localStorageTodos);
-
+    parsedItem = JSON.parse(localStorageItem);
   }
 
-  const [todos, setTodos] = React.useState(parsedTodos);
+  const [item, setItem] = React.useState(parsedItem);
+
+  // persistencia de datos con saveItem()
+  const saveItem = (newItem) => {
+    const stringifiedItem = JSON.stringify(newItem);
+    localStorage.setItem(itemName, stringifiedItem);
+    setItem(newItem);
+  };
+
+  return [
+    item,
+    saveItem,
+  ];
+}
+
+// componente
+function App(props) {
+  
+  const [todos, saveTodos] = useLocalStorage('TODOS_V1', []);
   const [search, setSearch] = React.useState('');
 
   const totalTodos = todos.length;
@@ -65,13 +82,6 @@ function App(props) {
     saveTodos(newTodos);
   }
 
-  // persistencia de datos con saveTodos()
-  const saveTodos = (newTodos) => {
-    const stringifiedTodos = JSON.stringify(newTodos);
-    localStorage.setItem("TODOS_V1", stringifiedTodos);
-    setTodos(newTodos);
-
-  }
 
   // elementos JSX
   return (
