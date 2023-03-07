@@ -6,16 +6,29 @@ import { TodoList } from "./TodoList.js";
 import { TodoItem } from "./TodoItem.js";
 import { CreateTodoButton } from "./CreateTodoButton.js";
 
-const defaultTodos = [
-  { text: 'Cumpleaños juan', completed: true },
-  { text: 'Compras verduras', completed: false },
-  { text: 'intro curso reactJs', completed: false }
-]
+// const defaultTodos = [
+//   { text: 'Cumpleaños juan', completed: true },
+//   { text: 'Compras verduras', completed: false },
+//   { text: 'intro curso reactJs', completed: false }
+// ]
 
 // componente
 function App(props) {
 
-  const [todos, setTodos] = React.useState(defaultTodos);
+  // persistencia con LocalStorage
+  const localStorageTodos = localStorage.getItem("TODOS_V1");
+  let parsedTodos;
+
+  if (!localStorageTodos) {
+    localStorage.setItem("TODOS_V1", JSON.stringify([]));
+    parsedTodos = [];
+
+  } else {
+    parsedTodos = JSON.parse(localStorageTodos);
+
+  }
+
+  const [todos, setTodos] = React.useState(parsedTodos);
   const [search, setSearch] = React.useState('');
 
   const totalTodos = todos.length;
@@ -42,14 +55,22 @@ function App(props) {
     const indexTodo = todos.findIndex( todo => todo.text === text);
     const newTodos = [...todos];
     newTodos[indexTodo].completed = true;
-    setTodos(newTodos);
+    saveTodos(newTodos);
   }
 
   const deleteTodo = (text) => {
     const indexTodo = todos.findIndex( todo => todo.text === text);
     const newTodos = [...todos];
     newTodos.splice(indexTodo, 1);
+    saveTodos(newTodos);
+  }
+
+  // persistencia de datos con saveTodos()
+  const saveTodos = (newTodos) => {
+    const stringifiedTodos = JSON.stringify(newTodos);
+    localStorage.setItem("TODOS_V1", stringifiedTodos);
     setTodos(newTodos);
+
   }
 
   // elementos JSX
